@@ -1,11 +1,11 @@
 <template>
     <div class="wrapper">
-        //<notifications />
+<!--        <notifications />-->
 
         <div class="main-content">
             <!-- common menu -->
-            //<WDNavBar />
-
+<!--            <WDNavBar />-->
+            디폴트 레이아웃!!
             <!-- content -->
             <router-view/>
 
@@ -16,16 +16,15 @@
 </template>
 
 <script>
-/*  import ContentFooter from './Footer';
-  import { FadeTransition } from 'vue2-transitions';
+  //import ContentFooter from './Footer';
+  //import { FadeTransition } from 'vue2-transitions';
 
-  import WDNavBar from "../../components/common/WDNavBar";*/
+  //import WDNavBar from "../../components/common/WDNavBar";
 
   export default {
     components: {
-     /* ContentFooter,
-      FadeTransition,
-      WDNavBar,*/
+
+    //  WDNavBar,
     },
     methods: {
 
