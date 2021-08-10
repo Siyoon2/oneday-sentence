@@ -13,23 +13,22 @@
 
 <script>
 
-import { ref } from 'vue';
+  import { ref } from 'vue';
 
-export default {
-  name: "Home",
-  components: {
+  export default {
+      name: "Home",
+      components: {
+      },
+      setup (){
 
-  },
-  setup (){
+              const isInit = ref(false);
 
-    const isInit = ref(false);
+              return {
+                  isInit,
 
-    return {
-        isInit,
-
-    }
+              }
+      }
   }
-}
 </script>
 
 <style scoped>

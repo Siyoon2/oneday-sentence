@@ -6,32 +6,31 @@
 			</transition>
 		</component>
 
-    <home />
 
 
+    <Home />
   </div>
 </template>
 
 <script>
-import home from "./views/home/Home";
-const default_layout = "DefaultLayout";
+import Home from "./views/home/Home";
+const DEFAULT_LAYOUT = "DefaultLayout";
 
 
 export default {
   name: 'App',
   components: {
-    home
+    Home
   },
   computed: {
+      /* 레이아웃 동적으로 쓰고 싶을때 사용*/
       layout() {
-        console.log(this.$route.meta.layout || default_layout);
-          return (this.$route.meta.layout || default_layout);
+          //return (this.$route.meta.layout || DEFAULT_LAYOUT);
+          return DEFAULT_LAYOUT;
       }
   },
 
   setup () {
-
-
       return {
 
       }
