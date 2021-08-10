@@ -12,11 +12,28 @@
 </template>
 
 <script>
+
+    import { ref } from 'vue'
+
     export default {
-        name: "Home"
+        name: "Home",
+		components: {
+
+        },
+		setup (){
+
+            const isInit = ref(false);
+
+            return {
+                isInit,
+
+            }
+		}
     }
 </script>
 
 <style scoped>
-
+	.date {
+		color: #000;
+	}
 </style>

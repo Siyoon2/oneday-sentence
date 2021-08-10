@@ -1,13 +1,16 @@
 <template>
-	<component :is="layout" v-if="state.isInit">
-		<transition name="fade" mode="out-in">
-			<router-view/>
-		</transition>
-	</component>
+	<div v-if="state.isInit">
+		<component :is="layout">
+			<transition name="fade" mode="out-in">
+				<router-view/>
+			</transition>
+		</component>
+	</div>
 </template>
 
 <script>
 const default_layout = "DefaultLayout";
+
 
 export default {
   name: 'App',
@@ -19,7 +22,7 @@ export default {
   components: {
   },
 
-  data () {
+  setup () {
 
 
       return {
