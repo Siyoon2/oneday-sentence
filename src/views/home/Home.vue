@@ -13,8 +13,6 @@
 
 <script>
 
-    import { ref } from 'vue'
-
     export default {
         name: "Home",
 		components: {
@@ -22,10 +20,8 @@
         },
 		setup (){
 
-            const isInit = ref(false);
 
             return {
-                isInit,
 
             }
 		}

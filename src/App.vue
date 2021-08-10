@@ -1,23 +1,15 @@
 <template>
-	<div v-if="state.isInit">
-		<component :is="layout">
-			<transition name="fade" mode="out-in">
-				<router-view/>
-			</transition>
-		</component>
+	<div>
+		<router-link to="/home">home</router-link>
 	</div>
 </template>
 
 <script>
-const default_layout = "DefaultLayout";
 
 
 export default {
   name: 'App',
   computed: {
-      layout() {
-          return (this.$route.meta.layout || default_layout);
-      }
   },
   components: {
   },
