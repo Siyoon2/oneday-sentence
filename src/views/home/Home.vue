@@ -5,7 +5,9 @@
 				<div class="date">
 					2021년 8월 9일
 				</div>
-				<div class="sentence"></div>
+				<div class="sentence">
+					There are better starters than me but I’m a strong finisher. — Usain Bolt
+				</div>
 			</div>
 		</div>
 	</div>

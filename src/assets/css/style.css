@@ -1,0 +1,49 @@
+/***** font *****/
+@font-face {
+    font-family: 'santana';
+    src: url('./fonts/Santana.ttf') format('truetype');
+}
+
+/***** 전체 스타일 리셋 *****/
+html, body {
+    font-family: 'santana', 'sans-serif';
+    font-size: 1rem;
+    font-weight: 400;
+    color: #484848;
+    background-color: #fff;
+    word-break: break-word;
+}
+
+ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, a,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    color: #484848;
+}
+a {
+    color: #484848 !important;
+}
+
+div, p, a, li {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+    line-height: 1.5;
+}
+
+img {
+    max-width: 100%;
+}
+
+.inner-wrap {
+    margin: 0 auto;
+    width: 1200px;
+}

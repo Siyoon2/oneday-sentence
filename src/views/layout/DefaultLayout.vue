@@ -5,7 +5,6 @@
         <div class="main-content">
             <!-- common menu -->
 <!--            <WDNavBar />-->
-            디폴트 레이아웃!!
             <!-- content -->
             <router-view/>
 
