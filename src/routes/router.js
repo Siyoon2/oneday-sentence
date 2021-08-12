@@ -7,6 +7,7 @@ Vue.use(Router);
 
 //import Home from "../views/home/Home";
 const Home = () => import(/* webpackChunkName: "group-home" */ '../views/home/Home')
+const Insert = () => import(/* webpackChunkName: "group-insert" */ '../views/insert/Insert')
 
 export default new Router({
     mode: 'history',
@@ -14,6 +15,10 @@ export default new Router({
         {
             path: '/home',
             components: Home,
+        },
+        {
+            path: '/insert',
+            components: Insert,
         },
     ],
 

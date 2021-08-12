@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 /***** font *****/
 @font-face {
     font-family: 'santana';
@@ -44,6 +46,7 @@ img {
 }
 
 .inner-wrap {
+    max-width: 1200px;
     margin: 0 auto;
-    width: 1200px;
+    padding: 50px 30px;
 }
