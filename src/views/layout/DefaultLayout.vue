@@ -1,16 +1,7 @@
 <template>
-    <div class="wrapper">
-<!--        <notifications />-->
+    <div class="wrap">
 
-        <div class="main-content">
-            <!-- common menu -->
-<!--            <WDNavBar />-->
-            <!-- content -->
-            <router-view/>
-
-            <!-- footer -->
-            <!--<content-footer v-if="!$route.meta.hideFooter"></content-footer>-->
-        </div>
+        <router-view/>
     </div>
 </template>
 

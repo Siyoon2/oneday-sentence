@@ -1,40 +1,26 @@
 <template>
-	<div>
-		<component :is="layout">
-			<transition name="fade" mode="out-in">
-				<router-view/>
-			</transition>
-		</component>
-    <Home />
-  </div>
+	<div id="app">
+		<component :is="layout"></component>
+	</div>
 </template>
 
 <script>
-import Home from "./views/home/Home";
-import Insert from "./views/insert/Insert";
-const DEFAULT_LAYOUT = "DefaultLayout";
+
+const default_layout = "DefaultLayout";
 
 
 export default {
-  name: 'App',
-  components: {
-      Home,
-	  Insert,
-  },
-  computed: {
-      /* 레이아웃 동적으로 쓰고 싶을때 사용*/
-      layout() {
-          //return (this.$route.meta.layout || DEFAULT_LAYOUT);
-          return DEFAULT_LAYOUT;
-      }
-  },
-
-  setup () {
-      return {
-
-      }
-  }
-
+    name: 'App',
+    computed: {
+        layout() {
+           // return (this.$route.meta.layout || default_layout);
+	        return default_layout;
+        }
+    },
+    created() {
+        //console.log(`>>== process.env.NODE_ENV = ${process.env.NODE_ENV}`);
+        //console.log(`>>== process.env.VUE_APP_API_HOST = ${process.env.VUE_APP_API_HOST}`);
+    }
 }
 </script>
 

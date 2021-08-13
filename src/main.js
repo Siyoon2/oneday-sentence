@@ -1,17 +1,21 @@
 import Vue from 'vue'
 import App from './App.vue'
-
+// router setup
 import router from './routes/router'
-import "./plugins/inject-layout" // <-- 요거 지우면 안댐!!
-import BootstrapVue from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-Vue.use(BootstrapVue)
+// layout
+import "./plugins/inject-layout" // <-- 요거 지우면 안댐!!
+
+// plugins ,global components
+import GlobalComponents from "./plugins/globalComponents"
+Vue.use(GlobalComponents);
 
 Vue.config.productionTip = false
 
 new Vue({
-    router,
+    el: '#app',
+    //store: store,
+
     render: h => h(App),
-}).$mount('#app');
+    router
+});
