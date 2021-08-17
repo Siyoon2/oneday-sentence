@@ -2,7 +2,9 @@
 	<div class="inner-wrap">
 		<div class="top">
 			<div class="date">
-				2021년 8월 9일
+				<span>
+					{{ dateValue }}
+				</span>
 			</div>
 			<router-link to="/insert" class="btn btn-primary">등록</router-link>
 
@@ -21,6 +23,36 @@
   export default {
       name: "Home",
       components: {
+      },
+	  data() {
+          return {
+              dateValue: '',
+          }
+	  },
+	  methods: {
+
+          /*todayValue () {
+              let date = new Date();
+
+              let year = date.getFullYear();
+              let month = date.getMonth() + 1;
+              let day = date.getDate();
+
+              return date[year,month,day].join('-');
+          },
+*/
+          //날짜 형식 포맷 YYYY-MM-DD
+		  dateFormat(date) {
+		      let year = date.getFullYear();
+		      let month = date.getMonth() + 1;
+		      let day = date.getDate();
+
+		      return [year,month,day].join('-');
+		  },
+	  },
+      mounted () {
+          // 현재 선택된 날짜 초기화
+          this.dateValue = this.dateFormat(new Date());
       },
 
   }

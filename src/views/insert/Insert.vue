@@ -10,7 +10,6 @@
 
 			<div class="table-wrap">
 				<table class="table">
-					<caption></caption>
 					<colgroup>
 						<col style="width: 100px;">
 						<col>
