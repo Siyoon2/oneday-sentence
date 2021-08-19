@@ -3,7 +3,7 @@
 		<div class="page-insert">
 			<div class="input-wrap">
 				<div class="input-box">
-					<WDInput placeholder="문장을 입력해 주세요." v-model="newSentence" :state="stateValidation" />
+					<WDInput placeholder="문장을 입력해 주세요." v-model="newSentence" />
 				</div>
 				<div class="btn btn-outline-primary" @click="addSentence">등록</div>
 			</div>
@@ -25,100 +25,18 @@
 					</tr>
 					</thead>
 					<tbody>
-					<tr v-for="sentenceItem in sentenceItems" :key="sentenceItem">
-						<td>12</td>
-						<td>There are better starters than me but I’m a strong finisher.</td>
-						<td>Not yet</td>
+					<tr v-for="(sentenceItem, seq) in sentenceItems" :key="sentenceItem.seq">
 						<td>
-							<div class="btn-sm btn-danger" @click="removeSentence(sentenceItem, index)">삭제</div>
+							{{ sentenceItem.seq }}
 						</td>
-					</tr>
-					<tr>
-						<td>11</td>
-						<td>There are better starters than me but I’m a strong finisher.</td>
-						<td>Not yet</td>
 						<td>
-							<div class="btn-sm btn-danger">삭제</div>
+							{{ sentenceItem.sentence }}
 						</td>
-					</tr>
-					<tr>
-						<td>10</td>
-						<td>There are better starters than me but I’m a strong finisher.</td>
-						<td>Not yet</td>
 						<td>
-							<div class="btn-sm btn-danger">삭제</div>
+							{{ sentenceItem.displayDate }}
 						</td>
-					</tr>
-					<tr>
-						<td>9</td>
-						<td>There are better starters than me but I’m a strong finisher.</td>
-						<td>2021-08-13</td>
 						<td>
-							<div class="btn-sm btn-danger">삭제</div>
-						</td>
-					</tr>
-					<tr>
-						<td>8</td>
-						<td>There are better starters than me but I’m a strong finisher.</td>
-						<td>2021-08-13</td>
-						<td>
-							<div class="btn-sm btn-danger">삭제</div>
-						</td>
-					</tr>
-					<tr>
-						<td>7</td>
-						<td>There are better starters than me but I’m a strong finisher.</td>
-						<td>2021-08-13</td>
-						<td>
-							<div class="btn-sm btn-danger">삭제</div>
-						</td>
-					</tr>
-					<tr>
-						<td>6</td>
-						<td>There are better starters than me but I’m a strong finisher.</td>
-						<td>2021-08-13</td>
-						<td>
-							<div class="btn-sm btn-danger">삭제</div>
-						</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>There are better starters than me but I’m a strong finisher.</td>
-						<td>2021-08-13</td>
-						<td>
-							<div class="btn-sm btn-danger">삭제</div>
-						</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>There are better starters than me but I’m a strong finisher.</td>
-						<td>2021-08-13</td>
-						<td>
-							<div class="btn-sm btn-danger">삭제</div>
-						</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>There are better starters than me but I’m a strong finisher.</td>
-						<td>2021-08-13</td>
-						<td>
-							<div class="btn-sm btn-danger">삭제</div>
-						</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>There are better starters than me but I’m a strong finisher.</td>
-						<td>2021-08-13</td>
-						<td>
-							<div class="btn-sm btn-danger">삭제</div>
-						</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>There are better starters than me but I’m a strong finisher.</td>
-						<td>2021-08-13</td>
-						<td>
-							<div class="btn-sm btn-danger">삭제</div>
+							<div class="btn-sm btn-danger" @click="removeSentence(sentenceItem, seq)">삭제</div>
 						</td>
 					</tr>
 					</tbody>
@@ -140,7 +58,18 @@
 
             return {
                 newSentence: '',
-                sentenceItems: [],
+                sentenceItems: [
+	                {
+	                    seq: 0,
+		                sentence: 'There are better starters than me but I’m a strong finisher.',
+		                displayDate: '20210819',
+	                },
+                    {
+                        seq: 1,
+                        sentence: 'There are better starters than me but I’m a strong finisher.',
+                        displayDate: '',
+                    },
+                ],
                 sentenceList: [],
             }
 	    },
@@ -152,16 +81,18 @@
             }
 	    },
 	    methods: {
-            removeSentence(sentenceItem, index) {
+            removeSentence(sentenceItem, seq) {
                 localStorage.removeItem(sentenceItem);
-                this.sentenceItems.splice(index, 1);
+                this.sentenceItems.splice(seq, 1);
             },
             addSentence(){
-                //console.log(this.newSentence);
+                //console.log(this.sentenceItems);
 	            if(this.newSentence !== '') {
 	                let value = this.newSentence && this.newSentence.trim();
 	                localStorage.setItem(value, value);
+                    this.sentenceItems.unshift({sentence: value, displayDate: '20210819'});
 	            }
+                this.newSentence = '';
             },
 	    },
         computed: {
