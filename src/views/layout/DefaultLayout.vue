@@ -1,20 +1,18 @@
 <template>
     <div class="wrap">
+	    <!-- header -->
+	    <Header />
 
         <router-view/>
     </div>
 </template>
 
 <script>
-  //import ContentFooter from './Footer';
-  //import { FadeTransition } from 'vue2-transitions';
-
-  //import WDNavBar from "../../components/common/WDNavBar";
+  import Header from "./Header";
 
   export default {
     components: {
-
-    //  WDNavBar,
+	    Header,
     },
     methods: {
 

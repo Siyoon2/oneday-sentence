@@ -6,8 +6,6 @@
 					{{ dateValue }}
 				</span>
 			</div>
-			<router-link to="/insert" class="btn btn-primary">등록</router-link>
-
 		</div>
 		<div class="content">
 			<!-- v-for="sentenceItem in sentenceItems" :key="sentenceItem.seq" -->
