@@ -1,18 +1,18 @@
 <template>
     <div class="wrap">
 	    <!-- header -->
-	    <Header />
+	    <!--<Header />-->
 
         <router-view/>
     </div>
 </template>
 
 <script>
-  import Header from "./Header";
+  /*import Header from "./Header";*/
 
   export default {
     components: {
-	    Header,
+	    //Header,
     },
     methods: {
 

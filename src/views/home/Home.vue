@@ -9,8 +9,9 @@
 		</div>
 		<div class="content">
 			<!-- v-for="sentenceItem in sentenceItems" :key="sentenceItem.seq" -->
-			<div class="sentence" v-if="sentenceItems.displayDate === dateValue">
-				{{ sentenceItems.sentence }}
+			<div class="sentence">
+				<!--{{ sentence }}-->
+				There are better starters than me but I’m a strong finisher.
 			</div>
 		</div>
 	</div>
@@ -23,6 +24,7 @@
 	    components: {
 
 	    },
+        inject: ['sentenceService'],
 	    data() {
 			return {
 				dateValue: '',
@@ -46,8 +48,9 @@
             async getTodaySentenceList() {
 
                 const result = await this.sentenceService.getTodaySentenceList({
-
-                })
+                    /*'displayDate': this.dateValue.split('-').join('')*/
+	                /*'displayDate': '20210820',*/
+                });
 
                 console.log('하루 문장 response', result);
                 this.sentenceList = result.response;
@@ -70,6 +73,7 @@
 		mounted () {
 			// 현재 선택된 날짜 초기화
 			this.dateValue = this.dateFormat(new Date());
+            this.getTodaySentenceList();
 		},
 		created() {
 			EventBus.$on('event-get-sentence-list', this.getTodaySentenceList);
@@ -89,7 +93,7 @@
 		color: #000;
 	}
 	.content {
-		padding: 30px 0;
+		/*padding: 30px 0;*/
 	}
 	.sentence {
 		color: blue;

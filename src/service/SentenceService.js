@@ -34,7 +34,7 @@ export class SentenceService {
         console.log('문장 목록 request', displayDate);
 
         return axios
-            .get(`/api/sentence/today/${displayDate}`)
+            .get(`${this.host}/api/sentence/today/${displayDate.displayDate}`)
             .then(response => {
                 return response.data;
             })
@@ -42,8 +42,6 @@ export class SentenceService {
                 console.log(error);
             })
     }
-
-
 
     /*
     * 문장 등록
@@ -54,7 +52,7 @@ export class SentenceService {
         console.log('문장 등록 request', params);
 
         return axios
-            .get(`/api/sentence/insert`, params)
+            .post(`/api/sentence/insert`, params)
             .then(response => {
                 return response.data;
             })

@@ -18,8 +18,8 @@ export default {
         }
     },
     created() {
-        //console.log(`>>== process.env.NODE_ENV = ${process.env.NODE_ENV}`);
-        //console.log(`>>== process.env.VUE_APP_API_HOST = ${process.env.VUE_APP_API_HOST}`);
+        console.log(`>>== process.env.NODE_ENV = ${process.env.NODE_ENV}`);
+        console.log(`>>== process.env.VUE_APP_API_HOST = ${process.env.VUE_APP_API_HOST}`);
     }
 }
 </script>

@@ -1,13 +1,7 @@
 <template>
 	<div class="inner-wrap">
 		<div class="page-insert">
-			<div class="input-wrap">
-				<div class="input-box">
-					<WDInput placeholder="문장을 입력해 주세요." v-model="newSentence" />
-				</div>
-				<div class="btn btn-outline-primary" @click="addSentence">등록</div>
-			</div>
-
+			<div class="btn btn-outline-primary" @click="showModal">등록</div>
 			<div class="table-wrap">
 				<table class="table">
 					<colgroup>
@@ -43,16 +37,61 @@
 				</table>
 			</div>
 		</div>
+		<!--<WDModal ref="modal-container">
+			<div class="input-wrap">
+				<div class="input-box">
+					<textarea name="sentence"
+					          id="sentence"
+					          placeholder="문장을 입력해 주세요."
+					          v-model="newSentence" />
+					&lt;!&ndash;<WDInput placeholder="문장을 입력해 주세요." v-model="newSentence" />&ndash;&gt;
+				</div>
+				<div class="btn btn-outline-primary" @click="addSentence">등록</div>
+			</div>
+		</WDModal>-->
+		<!-- insert modal -->
+		<b-modal ref="insert-modal"
+		         modalClass="insert-modal"
+		         :no-close-on-backdrop="true"
+		         :no-close-on-esc="true"
+		         hide-footer
+		         centered
+		         size="lg"
+		         title="문장 등록">
+			<template v-slot:modal-header-close>
+				<b-icon icon="x"
+				        font-scale="1.5" />
+			</template>
+
+			<!-- s.modal body -->
+			<div class="input-box">
+				<textarea name="sentence"
+				          id="sentence"
+				          placeholder="문장을 입력해 주세요."
+				          :state="stateValidation"
+				          v-model="newSentence" />
+			</div>
+
+			<b-button size="md"
+			          variant="success"
+			          squared
+			          @click="onInsertSentence">
+				등록
+			</b-button>
+			<!-- e.modal body -->
+		</b-modal>
 	</div>
 </template>
 
 <script>
-    import WDInput from "../components/WDInput";
+    //import WDInput from "../components/WDInput";
+    //import WDModal from "../components/WDModal";
 
     export default {
         name: "Insert",
 	    components: {
-            WDInput,
+            //WDInput,
+		    //WDModal,
 	    },
 	    data () {
 
@@ -81,6 +120,10 @@
             }
 	    },
 	    methods: {
+            showModal() {
+                this.$refs['insert-modal'].show();
+            },
+
             removeSentence(sentenceItem, seq) {
                 localStorage.removeItem(sentenceItem);
                 this.sentenceItems.splice(seq, 1);
@@ -94,28 +137,35 @@
 	            }
                 this.newSentence = '';
             },
+		    async onInsertSentence() {
+                await this.sentenceService.insertSentence({
+	                'sentence': this.newSentence,
+                })
+			    alert('문장이 등록되었습니다.');
+
+                this.newSentence = '';
+                this.$refs['insert-modal'].close();
+		    },
 	    },
         computed: {
             stateValidation() {
-                let value = '';
-                for (let i = 0; i < this.sentenceList.length; i++) {
-                    if (this.sentenceList[i].seq === this.sentenceIndex) {
-                        value = this.sentenceList[i].title;
-                    }
-                }
-                return value.length > 0;
+                return this.newSentence.length > 0;
             },
         }
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 	.input-wrap {
 		display: flex;
-		justify-content: space-between;
+		flex-direction: column;
 	}
 	.input-box {
 		min-width: 500px;
+		textarea {
+			width: 100%;
+			min-height: 100px;
+		}
 	}
 	.table-wrap {
 		padding: 30px 0;
@@ -126,5 +176,13 @@
 	}
 	.table tr th {
 		background-color: #ddd;
+	}
+
+
+	.insert-modal {
+		.btn {
+			width: 100%;
+			margin-top: 15px;
+		}
 	}
 </style>

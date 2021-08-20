@@ -50,3 +50,9 @@ img {
     margin: 0 auto;
     padding: 30px;
 }
+
+/* modal */
+.modal-header button.close{
+    background: none !important;
+    border: none !important;
+}

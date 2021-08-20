@@ -1,5 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
+
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+
+Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
+
 // router setup
 import router from './routes/router'
 
