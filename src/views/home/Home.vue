@@ -8,37 +8,32 @@
 			</div>
 		</div>
 		<div class="content">
-			<!-- v-for="sentenceItem in sentenceItems" :key="sentenceItem.seq" -->
 			<div class="sentence">
-				<!--{{ sentence }}-->
-				There are better starters than me but I’m a strong finisher.
+				{{ getTodaySentenceList.sentence }}
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-    import {EventBus} from "@/util/EventBus";
     export default {
         name: "Home",
 	    components: {
-
 	    },
         inject: ['sentenceService'],
 	    data() {
 			return {
 				dateValue: '',
                 sentenceList: [],
+				todaySentence: {
+				  displayDate: '',
+				},
 			}
 	    },
 	    methods: {
 
-            async getTodaySentenceList() {
-
-                const result = await this.sentenceService.getTodaySentenceList({
-                    /*'displayDate': this.dateValue.split('-').join('')*/
-	                /*'displayDate': '20210820',*/
-                });
+            async getTodaySentenceList(displayDate) {
+                const result = await this.sentenceService.getTodaySentenceList(displayDate);
 
                 console.log('하루 문장 response', result);
                 this.sentenceList = result.response;
@@ -64,7 +59,7 @@
             this.getTodaySentenceList();
 		},
 		created() {
-			EventBus.$on('event-get-sentence-list', this.getTodaySentenceList);
+
 		},
 
   }
