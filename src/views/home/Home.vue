@@ -9,7 +9,7 @@
 		</div>
 		<div class="content">
 			<div class="sentence">
-				{{ getTodaySentenceList.sentence }}
+				{{ todaySentence }}
 			</div>
 		</div>
 	</div>
@@ -25,18 +25,20 @@
 			return {
 				dateValue: '',
                 sentenceList: [],
-				todaySentence: {
-				  displayDate: '',
-				},
+				todaySentence: '',
 			}
 	    },
 	    methods: {
 
-            async getTodaySentenceList(displayDate) {
-                const result = await this.sentenceService.getTodaySentenceList(displayDate);
+            async getTodaySentenceList() {
+                const param = {
+                    displayDate: this.dateValue
+                }
+                const result = await this.sentenceService.getTodaySentenceList(param);
 
                 console.log('하루 문장 response', result);
-                this.sentenceList = result.response;
+                console.log(result);
+                this.todaySentence = result.response;
             },
 
             //날짜 형식 포맷 YYYY-MM-DD
@@ -50,7 +52,7 @@
                 month = month >= 10 ? month : '0'+month;
                 day = day >= 10 ? day : '0'+day;
 
-		        return year + '-' + month + '-' + day;
+		        return year + month + day;
 		    },
 	    },
 		mounted () {

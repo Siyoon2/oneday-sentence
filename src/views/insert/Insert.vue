@@ -38,7 +38,7 @@
 								수정
 							</div>
 							<div class="btn-sm btn-danger"
-							     @click="getDeleteSentence(item, index)">
+							     @click="getDeleteSentence(item.seq)">
 								삭제
 							</div>
 						</td>
@@ -195,8 +195,7 @@
                 alert('과제가 수정되었습니다.');
 
 		        await this.getSentenceList();
-                this.sentenceIndex = -1;
-                this.$refs['update-modal'].hide();
+                this.$refs['update-modal'].hide();1
 		    },
 	    },
         computed: {
