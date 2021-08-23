@@ -29,18 +29,6 @@
 			return {
 				dateValue: '',
                 sentenceList: [],
-				sentenceItems: [
-			        {
-			            seq: 0,
-			            sentence: 'There are better starters than me but I’m a strong finisher.',
-			            displayDate: '2021-08-19',
-			        },
-			        {
-		  	            seq: 1,
-			            sentence: 'There are better starters than me but I’m a strong finisher.',
-			            displayDate: '',
-			        },
-			    ],
 			}
 	    },
 	    methods: {

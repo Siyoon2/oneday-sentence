@@ -12,12 +12,11 @@ export class SentenceService {
     * @params params
     * @returns {Promise<AxiosResponse<any>>}
     * */
-    getSentenceList(params) {
-        console.log('문장 목록 request', params);
-
+    getSentenceList() {
         return axios
-            .get(`/api/sentence/list`, params)
+            .get(`${this.host}/api/sentence/list`)
             .then(response => {
+                console.log(response);
                 return response.data;
             })
             .catch(error => {
@@ -52,7 +51,7 @@ export class SentenceService {
         console.log('문장 등록 request', params);
 
         return axios
-            .post(`/api/sentence/insert`, params)
+            .post(`${this.host}/api/sentence/insert`, params)
             .then(response => {
                 return response.data;
             })
@@ -70,7 +69,7 @@ export class SentenceService {
         console.log('문장 수정 request', params);
 
         return axios
-            .put(`/api/sentence/update/${params.seq}`, params)
+            .put(`${this.host}/api/sentence/update/${params.seq}`, params)
             .then(response => {
                 return response.data;
             })
@@ -88,7 +87,7 @@ export class SentenceService {
         console.log('문장 삭제 request', seq);
 
         return axios
-            .delete(`/api/sentence/delete/${seq}`)
+            .delete(`${this.host}/api/sentence/delete/${seq}`)
             .then(response => {
                 return response.data;
             })

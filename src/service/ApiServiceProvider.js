@@ -14,7 +14,6 @@ class ApiServiceProvider {
     * */
     getSentenceService() {
         // const NODE_ENV = 'mock';
-
         if(NODE_ENV === 'mock') {
             return new MockSentenceService();
         } else {

@@ -19,36 +19,28 @@
 					</tr>
 					</thead>
 					<tbody>
-					<tr v-for="(sentenceItem, seq) in sentenceItems" :key="sentenceItem.seq">
+					<tr v-for="(item, index) in sentenceList" :key="index">
 						<td>
-							{{ sentenceItem.seq }}
+							{{ item.seq }}
 						</td>
 						<td>
-							{{ sentenceItem.sentence }}
+							{{ item.sentence }}
+						</td>
+						<td v-if="item.displayDate == null">
+							Not Yet
+						</td>
+						<td v-else>
+							{{ item.displayDate }}
 						</td>
 						<td>
-							{{ sentenceItem.displayDate }}
-						</td>
-						<td>
-							<div class="btn-sm btn-danger" @click="removeSentence(sentenceItem, seq)">삭제</div>
+							<div class="btn-sm btn-danger">삭제</div>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
-		<!--<WDModal ref="modal-container">
-			<div class="input-wrap">
-				<div class="input-box">
-					<textarea name="sentence"
-					          id="sentence"
-					          placeholder="문장을 입력해 주세요."
-					          v-model="newSentence" />
-					&lt;!&ndash;<WDInput placeholder="문장을 입력해 주세요." v-model="newSentence" />&ndash;&gt;
-				</div>
-				<div class="btn btn-outline-primary" @click="addSentence">등록</div>
-			</div>
-		</WDModal>-->
+
 		<!-- insert modal -->
 		<b-modal ref="insert-modal"
 		         modalClass="insert-modal"
@@ -89,6 +81,7 @@
 
     export default {
         name: "Insert",
+        inject: ['sentenceService'],
 	    components: {
             //WDInput,
 		    //WDModal,
@@ -97,54 +90,42 @@
 
             return {
                 newSentence: '',
-                sentenceItems: [
-	                {
-	                    seq: 0,
-		                sentence: 'There are better starters than me but I’m a strong finisher.',
-		                displayDate: '20210819',
-	                },
-                    {
-                        seq: 1,
-                        sentence: 'There are better starters than me but I’m a strong finisher.',
-                        displayDate: '',
-                    },
-                ],
                 sentenceList: [],
             }
 	    },
+	    mounted() {
+            this.getSentenceList();
+	    },
 	    created() {
-            if(localStorage.length > 0) {
-                for(let i = 0; i < localStorage.length; i++) {
-                    this.sentenceItems.push(localStorage.key(i));
-                }
-            }
+
 	    },
 	    methods: {
             showModal() {
                 this.$refs['insert-modal'].show();
             },
 
-            removeSentence(sentenceItem, seq) {
+           /* removeSentence(sentenceItem, seq) {
                 localStorage.removeItem(sentenceItem);
                 this.sentenceItems.splice(seq, 1);
-            },
-            addSentence(){
-                //console.log(this.sentenceItems);
-	            if(this.newSentence !== '') {
-	                let value = this.newSentence && this.newSentence.trim();
-	                localStorage.setItem(value, value);
-                    this.sentenceItems.unshift({sentence: value, displayDate: '20210819'});
-	            }
-                this.newSentence = '';
-            },
+            },*/
+
+		    async getSentenceList() {
+                const result = await this.sentenceService.getSentenceList();
+                console.log('문장 목록 response', result);
+                this.sentenceList = result.response;
+		    },
+
 		    async onInsertSentence() {
+
                 await this.sentenceService.insertSentence({
 	                'sentence': this.newSentence,
-                })
+                });
 			    alert('문장이 등록되었습니다.');
 
+                await this.getSentenceList();
+
                 this.newSentence = '';
-                this.$refs['insert-modal'].close();
+                this.$refs['insert-modal'].hide();
 		    },
 	    },
         computed: {
