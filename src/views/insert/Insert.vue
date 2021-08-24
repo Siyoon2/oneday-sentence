@@ -98,7 +98,6 @@
 			<div class="input-box">
 				<textarea name="sentence"
 				          id="update-sentence"
-				          placeholder="문장을 입력해 주세요."
 				          :state="stateValidation"
 				          v-model="updateParam.sentence" />
 			</div>
@@ -167,10 +166,16 @@
 
 		    async onInsertSentence() {
 
+                // validation check
+                if(!this.stateValidation) {
+                    alert('문장을 입력해주세요.');
+                    return;
+                }
+
                 await this.sentenceService.insertSentence({
 	                'sentence': this.newSentence,
                 });
-			    alert('문장이 등록되었습니다.');
+			    alert('등록되었습니다.');
 
                 await this.getSentenceList();
 
@@ -179,11 +184,11 @@
 		    },
 
 		    async getDeleteSentence(index) {
-		        if(confirm('문장을 삭제하시겠습니까?')) {
+		        if(confirm('삭제하시겠습니까?')) {
 
                     await this.sentenceService.deleteSentence(index);
 
-                    alert('문장이 삭제되었습니다.');
+                    alert('삭제되었습니다.');
                     await this.getSentenceList();
 		        }
 		    },
@@ -192,7 +197,7 @@
 
                 await this.sentenceService.updateSentence(this.updateParam);
 
-                alert('과제가 수정되었습니다.');
+                alert('수정되었습니다.');
 
 		        await this.getSentenceList();
                 this.$refs['update-modal'].hide();1
@@ -200,7 +205,8 @@
 	    },
         computed: {
             stateValidation() {
-                return this.newSentence.length > 0;
+                return (this.newSentence.length > 0)
+                    && (this.updateParam.sentence.length > 0)
             },
         }
     }
