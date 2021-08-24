@@ -3,13 +3,13 @@
 		<div class="top">
 			<div class="date">
 				<span>
-					{{ dateValue }}
+					{{ currentDate }}
 				</span>
 			</div>
 		</div>
 		<div class="content">
 			<div class="sentence">
-				{{ todaySentence }}
+				{{ todaySentence.sentence }}
 			</div>
 		</div>
 	</div>
@@ -23,6 +23,7 @@
         inject: ['sentenceService'],
 	    data() {
 			return {
+			    currentDate: '',
 				dateValue: '',
                 sentenceList: [],
 				todaySentence: '',
@@ -37,7 +38,6 @@
                 const result = await this.sentenceService.getTodaySentenceList(param);
 
                 console.log('하루 문장 response', result);
-                console.log(result);
                 this.todaySentence = result.response;
             },
 
@@ -54,10 +54,21 @@
 
 		        return year + month + day;
 		    },
+		    currentDateFormat(date) {
+                let year = date.getFullYear();
+                let month = date.getMonth() + 1;
+                let day = date.getDate();
+
+                month = month >= 10 ? month : '0'+month;
+                day = day >= 10 ? day : '0'+day;
+
+                return year + '-' + month + '-' + day;
+		    }
 	    },
 		mounted () {
 			// 현재 선택된 날짜 초기화
 			this.dateValue = this.dateFormat(new Date());
+			this.currentDate = this.currentDateFormat(new Date());
             this.getTodaySentenceList();
 		},
 		created() {
