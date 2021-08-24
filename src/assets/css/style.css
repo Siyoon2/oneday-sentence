@@ -1,14 +1,26 @@
 @charset "utf-8";
 
-/***** font *****/
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap'); /***** font *****/
 @font-face {
     font-family: 'santana';
     src: url('./fonts/Santana.ttf') format('truetype');
 }
+/* noto-sans-kr-regular - latin_korean */
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../../assets/css/fonts/noto-sans-kr-v13-latin_korean-regular.eot'); /* IE9 Compat Modes */
+    src: local(''),
+    url('../../assets/css/fonts/noto-sans-kr-v13-latin_korean-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../../assets/css/fonts/noto-sans-kr-v13-latin_korean-regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../../assets/css/fonts/noto-sans-kr-v13-latin_korean-regular.woff') format('woff'), /* Modern Browsers */
+    url('../../assets/css/fonts/noto-sans-kr-v13-latin_korean-regular.svg#NotoSansKR') format('svg'); /* Legacy iOS */
+}
 
 /***** 전체 스타일 리셋 *****/
 html, body {
-    font-family: 'santana', 'sans-serif';
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 1rem;
     font-weight: 400;
     color: #484848;

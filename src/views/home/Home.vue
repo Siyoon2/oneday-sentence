@@ -87,6 +87,9 @@
 	}
 	.date {
 		color: #000;
+		font-size: 20px;
+		font-weight: 600;
+		font-family: 'santana', sans-serif;
 	}
 	.content {
 		/*padding: 30px 0;*/
@@ -94,5 +97,6 @@
 	.sentence {
 		color: blue;
 		font-size: 2rem;
+		font-family: 'Roboto Mono', monospace;
 	}
 </style>
