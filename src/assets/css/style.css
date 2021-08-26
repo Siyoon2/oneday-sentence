@@ -18,7 +18,7 @@
     url('../../assets/css/fonts/noto-sans-kr-v13-latin_korean-regular.svg#NotoSansKR') format('svg'); /* Legacy iOS */
 }
 
-/***** 전체 스타일 리셋 *****/
+/* reset */
 html, body {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 1rem;

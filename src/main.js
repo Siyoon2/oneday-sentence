@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+import vueMoment from 'vue-moment'
+Vue.use(vueMoment)
 
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
 
@@ -13,6 +15,7 @@ import router from './routes/router'
 import "./plugins/inject-layout" // <-- 요거 지우면 안댐!!
 
 // plugins ,global components
+import "./plugins/filters"
 import GlobalComponents from "./plugins/globalComponents"
 import ApiServiceProvider from "@/service/ApiServiceProvider";
 Vue.use(GlobalComponents);

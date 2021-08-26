@@ -3,7 +3,7 @@
 		<div class="top">
 			<div class="date">
 				<span>
-					{{ currentDate }}
+					{{ currentDate | formatDate('YYYY-MM-DD') }}
 				</span>
 			</div>
 		</div>
@@ -23,7 +23,7 @@
         inject: ['sentenceService'],
 	    data() {
 			return {
-			    currentDate: '',
+			    currentDate: new Date(),
 				dateValue: '',
                 sentenceList: [],
 				todaySentence: '',
@@ -31,7 +31,7 @@
 	    },
 	    methods: {
 
-            async getTodaySentenceList() {
+            async getTodaySentence() {
                 const param = {
                     displayDate: this.dateValue
                 }
@@ -68,9 +68,11 @@
 		mounted () {
 			// 현재 선택된 날짜 초기화
 			this.dateValue = this.dateFormat(new Date());
-			this.currentDate = this.currentDateFormat(new Date());
-            this.getTodaySentenceList();
+            this.getTodaySentence();
 		},
+	    filters: {
+
+	    },
 		created() {
 
 		},
@@ -78,22 +80,20 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 	.top {
 		padding: 30px 0;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		.date {
+			color: #000;
+			font-size: 20px;
+			font-weight: 600;
+			font-family: 'santana', sans-serif;
+		}
 	}
-	.date {
-		color: #000;
-		font-size: 20px;
-		font-weight: 600;
-		font-family: 'santana', sans-serif;
-	}
-	.content {
-		/*padding: 30px 0;*/
-	}
+
 	.sentence {
 		color: blue;
 		font-size: 2rem;

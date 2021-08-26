@@ -38,7 +38,7 @@
 								수정
 							</div>
 							<div class="btn-sm btn-danger"
-							     @click="getDeleteSentence(item.seq)">
+							     @click="deleteSentence(item.seq)">
 								삭제
 							</div>
 						</td>
@@ -127,7 +127,6 @@
 	    data () {
 
             return {
-                sentenceIndex: -1,
                 newSentence: '',
                 sentenceList: [],
                 updateParam : {
@@ -167,10 +166,10 @@
 		    async onInsertSentence() {
 
                 // validation check
-                if(!this.stateValidation) {
+              /*  if(!this.stateValidation) {
                     alert('문장을 입력해주세요.');
                     return;
-                }
+                }*/
 
                 await this.sentenceService.insertSentence({
 	                'sentence': this.newSentence,
@@ -183,7 +182,7 @@
                 this.$refs['insert-modal'].hide();
 		    },
 
-		    async getDeleteSentence(index) {
+		    async deleteSentence(index) {
 		        if(confirm('삭제하시겠습니까?')) {
 
                     await this.sentenceService.deleteSentence(index);
@@ -200,8 +199,11 @@
                 alert('수정되었습니다.');
 
 		        await this.getSentenceList();
-                this.$refs['update-modal'].hide();1
+                this.$refs['update-modal'].hide();
 		    },
+	    },
+	    filters: {
+
 	    },
         computed: {
             stateValidation() {
@@ -221,7 +223,7 @@
 		min-width: 500px;
 		textarea {
 			width: 100%;
-			min-height: 100px;
+			min-height: 200px;
 		}
 	}
 	.table-wrap {
