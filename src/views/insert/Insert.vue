@@ -30,7 +30,7 @@
 							Not Yet
 						</td>
 						<td v-else>
-							{{ item.displayDate }}
+							{{ item.displayDate | formatDate}}
 						</td>
 						<td>
 							<div class="btn-sm btn-info"

@@ -6,7 +6,7 @@ import moment from "moment";
  * from 'YYYYMMDD'
  * to 'YYYY/MM/DD' ,  'YYYY년 MM월 DD일', ....
  */
-Vue.filter('formatDate', (val = '', formatString = 'YYYY-MM-DD') => {
+Vue.filter('formatDate', (val = '', formatString = 'YYYY/MM/DD') => {
     if(!val || val.length < 8){
         return val;
     }

@@ -2,9 +2,8 @@
 	<div class="inner-wrap">
 		<div class="top">
 			<div class="date">
-				<span>
-					{{ currentDate | formatDate('YYYY-MM-DD') }}
-				</span>
+				<!--{{ currentDate | formatDate }}-->
+				{{ dateValue | formatDate }}
 			</div>
 		</div>
 		<div class="content">
@@ -23,7 +22,6 @@
         inject: ['sentenceService'],
 	    data() {
 			return {
-			    currentDate: new Date(),
 				dateValue: '',
                 sentenceList: [],
 				todaySentence: '',
@@ -54,16 +52,6 @@
 
 		        return year + month + day;
 		    },
-		    currentDateFormat(date) {
-                let year = date.getFullYear();
-                let month = date.getMonth() + 1;
-                let day = date.getDate();
-
-                month = month >= 10 ? month : '0'+month;
-                day = day >= 10 ? day : '0'+day;
-
-                return year + '-' + month + '-' + day;
-		    }
 	    },
 		mounted () {
 			// 현재 선택된 날짜 초기화

@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 
+import moment from "moment";
+Vue.use(moment)
+
 import vueMoment from 'vue-moment'
 Vue.use(vueMoment)
 
