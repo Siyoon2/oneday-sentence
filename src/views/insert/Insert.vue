@@ -193,18 +193,18 @@
 
 		    async updateSentence() {
 
-                // validation check
-			    if(!this.stateValidation){
-			        console.log('stateValidation', this.stateValidation);
-			        alert('문장을 입력해주세요.');
-			    } else {
-                    await this.sentenceService.updateSentence(this.updateParam);
+				// validation check
+                if(!this.updateValidation) {
+                    alert('문장을 입력해주세요.');
+                    return;
+                }
 
-                    alert('수정되었습니다.');
+                await this.sentenceService.updateSentence(this.updateParam);
 
-                    await this.getSentenceList();
-                    this.$refs['update-modal'].hide();
-			    }
+                alert('수정되었습니다.');
+
+                await this.getSentenceList();
+                this.$refs['update-modal'].hide();
 		    },
 	    },
 	    filters: {
@@ -212,16 +212,11 @@
 	    },
         computed: {
             stateValidation() {
-                console.log('update',this.updateParam.sentence);
-                //console.log('sentence',this.sentenceList.sentence);
-                // if(this.sentenceList[this.updateParam.seq].sentence !== undefined) {
-                //     console.log('sentence',this.sentenceList[this.updateParam.seq].sentence);
-                // }
-	            console.log('new', this.newSentence.length > 0);
-	            console.log('update', this.updateParam.sentence !== '');
 	             return (this.newSentence.length > 0)
-                    && (this.updateParam.sentence !== '')
             },
+	        updateValidation() {
+                return (this.updateParam.sentence.length !== this.updateParam.sentence.length)
+	        },
         }
     }
 </script>
