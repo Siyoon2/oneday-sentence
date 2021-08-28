@@ -105,7 +105,7 @@
 			<b-button size="md"
 			          variant="success"
 			          squared
-			          @click="getUpdateSentence">
+			          @click="updateSentence">
 				수정
 			</b-button>
 			<!-- e.modal body -->
@@ -142,20 +142,18 @@
 
 	    },
 	    methods: {
+            // /입력 모달
             showModal() {
                 this.$refs['insert-modal'].show();
             },
+
+		    //수정 모달
             showUpdateModal(index) {
                 console.log(index);
                 this.updateParam.sentence = this.sentenceList[index].sentence;
 				this.updateParam.seq = this.sentenceList[index].seq;
                 this.$refs['update-modal'].show();
             },
-
-           /* removeSentence(sentenceItem, seq) {
-                localStorage.removeItem(sentenceItem);
-                this.sentenceItems.splice(seq, 1);
-            },*/
 
 		    async getSentenceList() {
                 const result = await this.sentenceService.getSentenceList();
@@ -166,15 +164,15 @@
 		    async onInsertSentence() {
 
                 // validation check
-              /*  if(!this.stateValidation) {
+                if(!this.stateValidation) {
                     alert('문장을 입력해주세요.');
                     return;
-                }*/
+                }
 
                 await this.sentenceService.insertSentence({
 	                'sentence': this.newSentence,
                 });
-			    alert('등록되었습니다.');
+                console.log('등록');
 
                 await this.getSentenceList();
 
@@ -187,19 +185,26 @@
 
                     await this.sentenceService.deleteSentence(index);
 
-                    alert('삭제되었습니다.');
+                    //alert('삭제되었습니다.');
+			        console.log('삭제');
                     await this.getSentenceList();
 		        }
 		    },
 
-		    async getUpdateSentence() {
+		    async updateSentence() {
 
-                await this.sentenceService.updateSentence(this.updateParam);
+                // validation check
+			    if(!this.stateValidation){
+			        console.log('stateValidation', this.stateValidation);
+			        alert('문장을 입력해주세요.');
+			    } else {
+                    await this.sentenceService.updateSentence(this.updateParam);
 
-                alert('수정되었습니다.');
+                    alert('수정되었습니다.');
 
-		        await this.getSentenceList();
-                this.$refs['update-modal'].hide();
+                    await this.getSentenceList();
+                    this.$refs['update-modal'].hide();
+			    }
 		    },
 	    },
 	    filters: {
@@ -207,8 +212,15 @@
 	    },
         computed: {
             stateValidation() {
-                return (this.newSentence.length > 0)
-                    && (this.updateParam.sentence.length > 0)
+                console.log('update',this.updateParam.sentence);
+                //console.log('sentence',this.sentenceList.sentence);
+                // if(this.sentenceList[this.updateParam.seq].sentence !== undefined) {
+                //     console.log('sentence',this.sentenceList[this.updateParam.seq].sentence);
+                // }
+	            console.log('new', this.newSentence.length > 0);
+	            console.log('update', this.updateParam.sentence !== '');
+	             return (this.newSentence.length > 0)
+                    && (this.updateParam.sentence !== '')
             },
         }
     }
