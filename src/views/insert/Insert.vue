@@ -194,7 +194,7 @@
 		    async updateSentence() {
 
 				// validation check
-                if(!this.updateValidation) {
+                if (!this.updateParam.sentence) {
                     alert('문장을 입력해주세요.');
                     return;
                 }
@@ -214,9 +214,6 @@
             stateValidation() {
 	             return (this.newSentence.length > 0)
             },
-	        updateValidation() {
-                return (this.updateParam.sentence.length !== this.updateParam.sentence.length)
-	        },
         }
     }
 </script>
