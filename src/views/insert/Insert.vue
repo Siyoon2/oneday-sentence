@@ -201,7 +201,7 @@
 
                 await this.sentenceService.updateSentence(this.updateParam);
 
-                alert('수정되었습니다.');
+                //alert('수정되었습니다.');
 
                 await this.getSentenceList();
                 this.$refs['update-modal'].hide();
@@ -224,7 +224,7 @@
 		flex-direction: column;
 	}
 	.input-box {
-		min-width: 500px;
+		min-width: 400px;
 		textarea {
 			width: 100%;
 			min-height: 200px;
