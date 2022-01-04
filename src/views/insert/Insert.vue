@@ -95,6 +95,7 @@
 			</template>
 
 			<!-- s.modal body -->
+			<!-- v-on:keydown.enter.prevent='onEnter' -->
 			<div class="input-box">
 				<textarea name="sentence"
 				          id="update-sentence"
@@ -202,7 +203,6 @@
                 await this.sentenceService.updateSentence(this.updateParam);
 
                 //alert('수정되었습니다.');
-
                 await this.getSentenceList();
                 this.$refs['update-modal'].hide();
 		    },

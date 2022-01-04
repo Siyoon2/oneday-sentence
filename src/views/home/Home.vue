@@ -42,7 +42,6 @@
 		    dateFormat() {
 		        let date = new Date();
 
-		        console.log( 'newDate',new Date());
 		        let year = date.getFullYear();
 		        let month = date.getMonth() + 1;
 		        let day = date.getDate();
