@@ -31,7 +31,7 @@
             async getTodaySentence() {
                 const param = {
                     displayDate: this.dateValue
-                }
+                };
                 const result = await this.sentenceService.getTodaySentenceList(param);
 
                 console.log('하루 문장 response', result);
