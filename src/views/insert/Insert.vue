@@ -99,7 +99,7 @@
 			<div class="input-box">
 				<textarea name="sentence"
 				          id="update-sentence"
-				          :state="stateValidation"
+				          :state="stateValidation && blankValidation"
 				          v-model="updateParam.sentence" />
 			</div>
 
@@ -199,9 +199,15 @@
                     alert('문장을 입력해주세요.');
                     return;
                 }
+              /* if (this.blankValidation) {
+                    alert('문장을 수정해주세요.');
+                    console.log('문장 수정해주세요!!!!!!!!!!');
+                    return;
+               } else if (!this.blankValidation || !this.updateParam.sentence.length ) {
+                   alert('문장이 똑같지 않아요');
+               }*/
 
                 await this.sentenceService.updateSentence(this.updateParam);
-
                 //alert('수정되었습니다.');
                 await this.getSentenceList();
                 this.$refs['update-modal'].hide();
@@ -212,8 +218,12 @@
 	    },
         computed: {
             stateValidation() {
-	             return (this.newSentence.length > 0)
+                return (this.newSentence.length > 0)
             },
+	        blankValidation() {
+                return (this.updateParam.sentence === this.updateParam.sentence)
+	        },
+
         }
     }
 </script>
@@ -224,7 +234,6 @@
 		flex-direction: column;
 	}
 	.input-box {
-		min-width: 400px;
 		textarea {
 			width: 100%;
 			min-height: 200px;

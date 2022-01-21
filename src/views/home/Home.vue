@@ -37,20 +37,6 @@
                 console.log('하루 문장 response', result);
                 this.todaySentence = result.response;
             },
-
-            //날짜 형식 포맷 YYYY-MM-DD
-		    dateFormat() {
-		        let date = new Date();
-
-		        let year = date.getFullYear();
-		        let month = date.getMonth() + 1;
-		        let day = date.getDate();
-
-                month = month >= 10 ? month : '0' + month;
-                day = day >= 10 ? day : '0' + day;
-
-		        return ''+ year + month + day;
-		    },
 	    },
 		mounted () {
 			// 현재 선택된 날짜 초기화
