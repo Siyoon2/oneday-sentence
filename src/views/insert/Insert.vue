@@ -115,8 +115,6 @@
 </template>
 
 <script>
-    //import WDInput from "../components/WDInput";
-    //import WDModal from "../components/WDModal";
 
     export default {
         name: "Insert",
@@ -199,13 +197,6 @@
                     alert('문장을 입력해주세요.');
                     return;
                 }
-              /* if (this.blankValidation) {
-                    alert('문장을 수정해주세요.');
-                    console.log('문장 수정해주세요!!!!!!!!!!');
-                    return;
-               } else if (!this.blankValidation || !this.updateParam.sentence.length ) {
-                   alert('문장이 똑같지 않아요');
-               }*/
 
                 await this.sentenceService.updateSentence(this.updateParam);
                 //alert('수정되었습니다.');
